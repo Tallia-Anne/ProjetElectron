@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-let tableau = [] 
+let tableau = []; 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -72,9 +72,11 @@ app.on('activate', () => {
 
 
 ipcMain.on("second-window",async (e) => {
-  createSecondWindow()
+  createSecondWindow(tableau)
+
 });
 
 ipcMain.on("save-pwd",async (e, password) => {
-  console.log(password);
+  tableaupassword = tableau.push(password);
+  console.log(tableau)
 });

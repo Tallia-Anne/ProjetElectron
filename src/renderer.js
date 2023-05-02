@@ -1,6 +1,6 @@
 let historique = document.querySelector('#historique')
-let password=document.getElementById("generator");
-let monTableau = []
+let password= document.getElementById("generator");
+// let monTableau = []
     function genPassword() {
    let chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    let passwordLength = 12;
@@ -10,10 +10,10 @@ let monTableau = []
       password += chars.substring(randomNumber, randomNumber +1);
     }
         document.getElementById("password").value = password;
-        tableaupassword = monTableau.push(password);
-        console.log(tableaupassword)
+        // tableaupassword = monTableau.push(password);
+        // console.log(tableaupassword)
         // console.log(monTableau);
-        savePwd()
+        savePwd(password)
     }
 
   function copyPassword() {
@@ -23,12 +23,12 @@ let monTableau = []
   navigator.clipboard.writeText(copyText.value)
   alert("Copied the text: " + copyText.value);
   }
-console.log(monTableau);
+console.log(password.value);
 historique.addEventListener('click', () => {
 // console.log('ok')
 API.secondWindow()
 })
 
-function savePwd() {
-  API.setPassword()
+function savePwd(password) {
+  API.setPassword(password)
 }
