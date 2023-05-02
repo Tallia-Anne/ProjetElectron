@@ -10,12 +10,10 @@ let password= document.getElementById("generator");
       password += chars.substring(randomNumber, randomNumber +1);
     }
         document.getElementById("password").value = password;
-        // tableaupassword = monTableau.push(password);
-        // console.log(tableaupassword)
-        // console.log(monTableau);
+   
         savePwd(password)
+        API.notifNotification();
     }
-
   function copyPassword() {
   let copyText = document.getElementById("password");
   copyText.select();
@@ -23,9 +21,8 @@ let password= document.getElementById("generator");
   navigator.clipboard.writeText(copyText.value)
   alert("Copied the text: " + copyText.value);
   }
-console.log(password.value);
+// console.log(password.value);
 historique.addEventListener('click', () => {
-// console.log('ok')
 API.secondWindow()
 })
 

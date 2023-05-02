@@ -5,5 +5,7 @@ const {contextBridge, ipcRenderer} = require('electron');
 
 contextBridge.exposeInMainWorld('API' , {
 secondWindow: () => ipcRenderer.send('second-window'),
-setPassword:(password) => ipcRenderer.send('save-pwd', password)
+setPassword:(password) => ipcRenderer.send('save-pwd', password),
+notifNotification:(notification) => ipcRenderer.send("notif-notification", notification)
+
 })
