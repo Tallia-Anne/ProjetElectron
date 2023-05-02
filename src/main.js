@@ -74,3 +74,7 @@ app.on('activate', () => {
 ipcMain.on("second-window",async (e) => {
   createSecondWindow()
 });
+
+ipcMain.on("save-pwd",async (e, password) => {
+  console.log(password);
+});
