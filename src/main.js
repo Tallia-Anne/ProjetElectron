@@ -23,6 +23,28 @@ const createWindow = () => {
   mainWindow.webContents.openDevTools();
 };
 
+
+// Créer une nouvelle fenetre
+
+const createSecondWindow = () => {
+  // Create the browser window.
+  const secondWindow = new BrowserWindow({
+    width: 400,
+    height: 300,
+    // parent: mainWindow,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  });
+  
+  // and load the page2.html of the app.
+  secondWindow.loadFile(path.join(__dirname,'historique.html'));
+  secondWindow.once("ready-to-show", () => {
+    secondWindow.show();
+    secondWindow.webContents.openDevTools();
+  });
+};
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -48,26 +70,6 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-// Créer une nouvelle fenetre
-
-const createSecondWindow = () => {
-  // Create the browser window.
-  const secondWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    parent: mainWindow,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  });
-  
-  // and load the page2.html of the app.
-  secondWindow.loadFile(path.join(__dirname,'notification.html'));
-  secondWindow.once("ready-to-show", () => {
-    secondWindow.show();
-    secondWindow.webContents.openDevTools();
-  });
-};
 
 ipcMain.on("second-window",async (e) => {
   createSecondWindow()
