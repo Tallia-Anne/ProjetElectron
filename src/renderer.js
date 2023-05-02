@@ -12,7 +12,8 @@ let monTableau = []
         document.getElementById("password").value = password;
         tableaupassword = monTableau.push(password);
         console.log(tableaupassword)
-        console.log(monTableau);
+        // console.log(monTableau);
+        savePwd()
     }
 
   function copyPassword() {
@@ -27,3 +28,7 @@ historique.addEventListener('click', () => {
 // console.log('ok')
 API.secondWindow()
 })
+
+function savePwd() {
+  API.setPassword()
+}
