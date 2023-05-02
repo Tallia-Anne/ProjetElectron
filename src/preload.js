@@ -4,5 +4,6 @@ const {contextBridge, ipcRenderer} = require('electron');
 
 
 contextBridge.exposeInMainWorld('API' , {
-secondWindow: () => ipcRenderer.send('second-window')
+secondWindow: () => ipcRenderer.send('second-window'),
+setPassword:(password) => ipcRenderer.send('save-pwd', password)
 })
