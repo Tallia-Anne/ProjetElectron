@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
+//const update = require('update-electron-app')()
 const store = new Store();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
