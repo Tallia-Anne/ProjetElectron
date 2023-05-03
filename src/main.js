@@ -1,8 +1,27 @@
-const { app, BrowserWindow, ipcMain, Notification } = require('electron');
+const { app, BrowserWindow, ipcMain, Notification, dialog } = require('electron');
+require('update-electron-app')()
 const path = require('path');
 const Store = require('electron-store');
+<<<<<<< HEAD
 //const update = require('update-electron-app')()
+=======
+const {autoUpdater} = require("electron-updater")
+const log = require('electron-log')
+autoUpdater.logger = log
+>>>>>>> e2a2cee2ac84a0f91ae49aa9b3705422d298dd97
 const store = new Store();
+
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Update Ready',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'A new update is ready!'
+  }
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {if (returnValue.response === 0) autoUpdater.quitAndInstall()})
+})
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -25,6 +44,10 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
+
+autoUpdater.on('update-available', (info) => {sendStatusToWindow('New update downloading...')})
+function sendStatusToWindow(text) {log.info(text);mainWindow.webContents.send('message', text)}
+
 
 // Créer une nouvelle fenetre
 const createSecondWindow = () => {
