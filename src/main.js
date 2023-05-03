@@ -2,13 +2,9 @@ const { app, BrowserWindow, ipcMain, Notification, dialog } = require('electron'
 require('update-electron-app')()
 const path = require('path');
 const Store = require('electron-store');
-<<<<<<< HEAD
-//const update = require('update-electron-app')()
-=======
 const {autoUpdater} = require("electron-updater")
 const log = require('electron-log')
 autoUpdater.logger = log
->>>>>>> e2a2cee2ac84a0f91ae49aa9b3705422d298dd97
 const store = new Store();
 
 
