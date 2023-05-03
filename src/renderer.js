@@ -10,7 +10,7 @@ let password= document.getElementById("generator");
       password += chars.substring(randomNumber, randomNumber +1);
     }
         document.getElementById("password").value = password;
-   
+  
         savePwd(password)
         API.notifNotification();
     }

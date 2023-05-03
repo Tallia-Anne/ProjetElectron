@@ -30,19 +30,9 @@ tr.appendChild(document.createElement('td'))
 tr.appendChild(document.createElement('td'))
 tr.appendChild(document.createElement('td'))
 tr.childNodes[0].innerHTML = key
-tr.childNodes[1].innerHTML = table[key]
-tr.childNodes[2].innerHTML =  "  <button>Supprimer</button>"
+tr.childNodes[1].innerHTML = "<p id='monP'>"+table[key] +"</p>"
+tr.childNodes[2].innerHTML =  "  <button id='detele'>Supprimer</button>"
 tbody.appendChild(tr)
 }
 }
-
-
-
-
-
-
-
-
-
-
 

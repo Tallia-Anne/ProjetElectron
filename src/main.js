@@ -8,12 +8,12 @@ autoUpdater.logger = log
 const store = new Store();
 
 
-autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+autoUpdater.on('update-downloaded', (event) => {
   const dialogOpts = {
     type: 'info',
     buttons: ['Restart', 'Later'],
     title: 'Update Ready',
-    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    // message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail: 'A new update is ready!'
   }
   dialog.showMessageBox(dialogOpts).then((returnValue) => {if (returnValue.response === 0) autoUpdater.quitAndInstall()})
@@ -97,7 +97,6 @@ ipcMain.on("second-window",async (e) => {
 });
 ipcMain.on("query-passwords", (e) => {
  let data = store.store
-e.returnValue = store.store
 //TODO Récupérer les données
 e.sender.send('reply-passwords', data);
 console.log(data)
@@ -113,6 +112,11 @@ ipcMain.on("save-pwd",async (e, password) => {
 ipcMain.on('notif-notification', (e) => {
 createNofication()
 } )
+
+// ipcMain.on('supprimer-pwd', (e) => {
+// store.delete = store.store
+// } )
+
 
 function createNofication() {
   new Notification ({

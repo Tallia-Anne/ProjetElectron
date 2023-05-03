@@ -6,6 +6,8 @@ const {contextBridge, ipcRenderer} = require('electron');
 contextBridge.exposeInMainWorld('API' , {
 secondWindow: () => ipcRenderer.send('second-window'),
 setPassword:(password) => ipcRenderer.send('save-pwd', password),
-notifNotification:(notification) => ipcRenderer.send("notif-notification", notification)
+notifNotification:(notification) => ipcRenderer.send("notif-notification", notification),
+// deleteMtp:() => ipcRenderer.send('supprimer-pwd')
+
 
 })
